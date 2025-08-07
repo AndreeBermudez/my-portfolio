@@ -1,0 +1,77 @@
+---
+import { technologies } from '@/data/technologies';
+import { Icon } from 'astro-icon/components';
+const duplicatedTech = [...technologies, ...technologies];
+---
+
+<div class='flex justify-center items-center'>
+	<div class='slider relative max-w-6xl w-full h-32 overflow-hidden'>
+		<div class='slider-track flex items-center h-full'>
+			{
+				duplicatedTech.map((technology) => (
+					<div class='flex items-center mr-12 min-w-max'>
+						<Icon name={technology.icon} class='w-8 h-8 mr-4' />
+						<span class='text-white/60 font-medium text-nowrap text-lg'>{technology.name}</span>
+					</div>
+				))
+			}
+		</div>
+	</div>
+</div>
+
+<style>
+	.slider::before,
+	.slider::after {
+		background: linear-gradient(to right, #101010 0%, #101010 60%, rgba(16, 16, 16, 0) 100%);
+		content: '';
+		height: 100%;
+		position: absolute;
+		width: 50%;
+		z-index: 2;
+		pointer-events: none;
+		top: 0;
+		border-radius: 9999px;
+		@media screen and (min-width: 768px) {
+			width: 15%;
+		}
+	}
+
+	.slider::before {
+		left: 0;
+		top: 0;
+	}
+
+	.slider::after {
+		right: 0;
+		top: 0;
+		transform: rotateZ(180deg);
+	}
+
+	@media (min-width: 768px) {
+		.slider::before,
+		.slider::after {
+			width: 35%;
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.slider::before,
+		.slider::after {
+			width: 10%;
+		}
+	}
+
+	.slider-track {
+		width: max-content;
+		animation: scroll 20s linear infinite;
+	}
+
+	@keyframes scroll {
+		0% {
+			transform: translateX(0);
+		}
+		100% {
+			transform: translateX(calc(-50%));
+		}
+	}
+</style>

@@ -1,0 +1,55 @@
+---
+import { certificates } from '@/data/certificates';
+import CertificateCard from '../shared/CertificateCard.astro';
+---
+
+<section
+	class='max-w-6xl min-h-screen px-6 md:px-10 lg:px-14 pt-20 md:pt-32 mx-auto pb-12 space-y-4 flex flex-col items-center'
+	id='achievements'>
+	<div class='flex flex-col w-full h-full gap-12 justify-center items-center'>
+		<!-- Título con animación -->
+		<div class='text-white text-4xl md:text-6xl font-normal w-full pb-4 relative group'>
+			<h2 class='group-hover:text-purple-400 transition-colors duration-300'>Achievements</h2>
+			<div
+				class='absolute -bottom-3 left-0 w-24 h-1 bg-gradient-to-r from-purple-500 to-purple-300
+                rounded-full transition-all duration-500 group-hover:w-32 group-hover:from-purple-600
+                group-hover:to-purple-400'>
+			</div>
+		</div>
+
+		<!-- Grid de certificados -->
+		<div class='grid grid-cols-1 md:grid-cols-2 gap-8 w-full'>
+			{
+				certificates.map((cert, index) => (
+					<div
+						style={`animation-delay: ${index * 150}ms`}
+						class='animate-fade-up transform hover:z-10 transition-all duration-300'>
+						<CertificateCard
+							title={cert.title}
+							organization={cert.organization}
+							date={cert.date}
+							image={cert.image}
+						/>
+					</div>
+				))
+			}
+		</div>
+	</div>
+</section>
+
+<style>
+	@keyframes fade-up {
+		0% {
+			opacity: 0;
+			transform: translateY(20px);
+		}
+		100% {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+	.animate-fade-up {
+		animation: fade-up 0.5s ease-out forwards;
+		opacity: 0;
+	}
+</style>

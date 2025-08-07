@@ -1,0 +1,71 @@
+---
+import type { Experience } from '@/data/experiences';
+import { Calendar, MapPin } from '@lucide/astro';
+interface Props extends Experience {}
+const { title, company, current, date, location, description, technologies = [], achievements = [] } = Astro.props;
+---
+
+<div
+    class='relative bg-[#161616] rounded-2xl border border-[#2a2a2a] px-4 py-8 lg:px-6 lg:py-6 group hover:border-violet-500/40 hover:shadow-[0_0_25px_rgba(139,92,246,0.15)] transition-all duration-300 hover:bg-[#1a1a1a]'>
+    <div class='absolute -left-10 top-1/2 w-4 h-4 bg-violet-700 rounded-full border-2 border-violet-500 hidden lg:block'></div>
+    <!-- Header de la card -->
+    <div class='flex flex-col md:flex-row md:justify-between mb-4'>
+        <div class='flex flex-col space-y-2 mb-3 md:mb-0'>
+            <h3 class='font-bold text-xl text-gray-100 group-hover:text-violet-300 transition-colors duration-300'>
+                {title}
+            </h3>
+            <div class='flex items-center justify-start gap-3'>
+                <span class='text-gray-300 text-base font-medium'>{company}</span>
+                {current && (
+                    <span class='text-violet-100 text-xs font-semibold border border-violet-400 rounded-full px-3 py-1 bg-violet-600/70 shadow-sm'>
+                        Current
+                    </span>
+                )}
+            </div>
+        </div>
+        <div class='flex flex-col space-y-2 text-sm'>
+            <span class='flex gap-2 items-center'>
+                <Calendar size={16} class='text-violet-400' />
+                <span class='text-gray-300'>{date}</span>
+            </span>
+            <span class='flex gap-2 items-center'>
+                <MapPin size={16} class='text-violet-400' />
+                <span class='text-gray-300'>{location}</span>
+            </span>
+        </div>
+    </div>
+
+    <!-- Description -->
+    <div class='mb-5'>
+        <p class='text-gray-300 text-base leading-relaxed'>
+            {description}
+        </p>
+    </div>
+
+    <!-- Technologies -->
+    {technologies.length > 0 && (
+        <div class='flex flex-wrap gap-2 mb-5'>
+            {technologies.map(tech => (
+                <span
+                    class='text-gray-200 text-sm border border-[#3a3a3a] rounded-full px-3 py-1.5 bg-[#1f1f1f] hover:bg-[#252525] hover:border-violet-500/30 transition-colors duration-200'>
+                    {tech}
+                </span>
+            ))}
+        </div>
+    )}
+
+    <!-- Achievements -->
+    {achievements.length > 0 && (
+        <div class='text-gray-300 text-sm space-y-3'>
+            <p class='text-gray-200 font-semibold'>Key Achievements:</p>
+            <ul class='space-y-2.5'>
+                {achievements.map(item => (
+                    <li class='flex gap-3 items-start'>
+                        <span class='w-2 h-2 rounded-full bg-violet-400 mt-1.5 flex-shrink-0'></span>
+                        <span class='text-gray-300'>{item}</span>
+                    </li>
+                ))}
+            </ul>
+        </div>
+    )}
+</div>

@@ -1,0 +1,46 @@
+---
+import { Menu } from '@lucide/astro';
+---
+
+<button class='top-4 right-4 fixed lg:hidden cursor-pointer z-99' id='mobile-button'>
+	<Menu class='text-white/50 w-8 h-auto' />
+</button>
+<section
+	id='mobile-menu'
+	class='fixed top-0 left-0 w-full h-screen bg-dark/80 backdrop-blur-lg z-99 pointer-events-none opacity-0 -translate-y-full transition-all duration-500'>
+	<div class='flex flex-col items-center justify-center h-full space-y-6'>
+		<a href='#hero' class='text-white text-xl'>Home</a>
+		<a href='#about' class='text-white text-xl'>About</a>
+		<a href='#projects' class='text-white text-xl'>Projects</a>
+		<a href='#experience' class='text-white text-xl'>Experience</a>
+		<a href='#achievements' class='text-white text-xl'>Achievements</a>
+		<a href='#contact' class='text-white text-xl'>Contact</a>
+	</div>
+</section>
+<script>
+	const button = document.getElementById('mobile-button');
+	const menu = document.getElementById('mobile-menu');
+	const link = document.querySelectorAll('#mobile-menu a');
+
+	function openMenu() {
+		menu?.classList.remove('pointer-events-none', 'opacity-0', '-translate-y-full');
+		menu?.classList.add('pointer-events-auto', 'opacity-100', 'translate-y-0');
+	}
+	function closeMenu() {
+		menu?.classList.add('pointer-events-none', 'opacity-0', '-translate-y-full');
+		menu?.classList.remove('pointer-events-auto', 'opacity-100', 'translate-y-0');
+	}
+
+	button?.addEventListener('click', () => {
+		if (menu?.classList.contains('opacity-0')) {
+			openMenu()
+		} else {
+			closeMenu()
+		}
+	});
+	link.forEach((item) => {
+		item.addEventListener('click', () => {
+			closeMenu()
+		});
+	});
+</script>

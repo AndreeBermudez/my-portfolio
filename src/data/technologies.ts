@@ -1,0 +1,18 @@
+export const technologies = [
+    { name: 'HTML5', icon: 'html5' },
+    { name: 'CSS', icon: 'css_old' },
+    { name: 'JavaScript', icon: 'javascript' },
+    { name: 'TypeScript', icon: 'typescript' },
+    { name: 'React', icon: 'React_dark' },
+    { name: 'Astro', icon: 'astro_dark' },
+    { name: 'Spring', icon: 'spring' },
+    { name: 'Express.js', icon: 'Express.js_dark' },
+    { name: 'Tailwind CSS', icon: 'tailwindcss' },
+    { name: 'Flutter', icon: 'flutter' },
+    { name: 'Git', icon: 'git' },
+    { name: 'GitHub', icon: 'GitHub_dark' },
+    { name: 'Go', icon: 'Go_dark' },
+    { name: 'MySQL', icon: 'mysql' },
+    { name: 'Node.js', icon: 'nodejs' },
+    { name: 'React Query', icon: 'reactquery' },
+];

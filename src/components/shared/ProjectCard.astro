@@ -1,0 +1,70 @@
+---
+import { ExternalLink, Github } from '@lucide/astro';
+import Tag from '../ui/Tag.astro';
+interface Props {
+	title: string;
+	description: string;
+	image: string;
+	tags: string[];
+	repoLink: string;
+	liveLink: string;
+}
+const { title, description, image, tags = [], repoLink, liveLink } = Astro.props;
+---
+
+<article
+	class='group h-full relative overflow-hidden rounded-xl bg-[#141414]/20 border border-white/5
+    backdrop-blur-sm transition-all duration-500 hover:border-purple-500/30
+    hover:shadow-[0_0_30px_rgba(161,116,250,0.15)]'>
+	<div class='grid lg:grid-cols-2 h-full'>
+		{/* Contenedor de imagen con hover effect */}
+		<div class='relative h-full overflow-hidden'>
+			<img
+				src={image}
+				alt={title}
+				class='w-full h-full object-cover transition-transform duration-700 group-hover:scale-105'
+			/>
+			<div class='absolute inset-0 bg-black/20'></div>
+		</div>
+
+		{/* Contenido con mejor espaciado */}
+		<div class='flex flex-col flex-1 p-6 md:p-8'>
+			<h3 class='text-2xl font-medium text-white group-hover:text-purple-400 transition-colors'>
+				{title}
+			</h3>
+			<p class='text-white/60 text-sm leading-relaxed flex-1 my-4'>
+				{description}
+			</p>
+
+			{/* Footer con mejor distribución */}
+			<div class='mt-auto space-y-6'>
+				{/* Tags con mejor diseño */}
+				<div class='flex flex-wrap gap-2'>
+					{tags.map((tag) => <Tag text={tag} />)}
+				</div>
+				{/* Botones con mejor interactividad */}
+				<div class='flex gap-6'>
+					<a
+						href={repoLink}
+						class='flex items-center gap-2 text-white/60 hover:text-purple-400 transition-all duration-300 hover:translate-y-[-2px]'>
+						<Github class='w-5 h-5' />
+						<span class='text-sm font-medium'>Código</span>
+					</a>
+					<a
+						href={liveLink}
+						class='flex items-center gap-2 text-white/60 hover:text-purple-400 transition-all duration-300 hover:translate-y-[-2px]'>
+						<ExternalLink class='w-5 h-5' />
+						<span class='text-sm font-medium'>Demo</span>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</article>
+
+<style>
+	article {
+		transform: translateZ(0);
+		backface-visibility: hidden;
+	}
+</style>

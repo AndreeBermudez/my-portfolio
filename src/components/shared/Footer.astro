@@ -1,0 +1,42 @@
+---
+import { Heart } from '@lucide/astro';
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="w-full py-8 text-center border-t border-white/5">
+    <div class="max-w-5xl mx-auto px-4 space-y-4">
+        <button id="likeBtn" class="group flex items-center gap-2 mx-auto px-4 py-2 rounded-xl 
+            bg-[#141414]/50 border border-white/5 hover:border-purple-500/30 
+            transition-all duration-300 text-white/70 hover:text-purple-400">
+            <Heart id="heartIcon" size={20} class="transition-transform duration-300 group-hover:scale-125" />
+            <span id="likeCount">0</span>
+        </button>
+        
+        <p class="text-white/60 text-sm">
+            © {currentYear} Andree Bermúdez. Built with
+            <span class="text-purple-400">Astro</span> y 
+            <span class="text-purple-400">Tailwind CSS</span>
+        </p>
+    </div>
+</footer>
+
+<script>
+    const likeBtn = document.getElementById('likeBtn');
+    const heartIcon = document.getElementById('heartIcon');
+    const likeCount = document.getElementById('likeCount');
+    let likes = parseInt(localStorage.getItem('portfolioLikes') || '0');
+    if(likeCount){
+        likeCount.textContent = likes.toString();
+    }
+    likeBtn?.addEventListener('click', () => {
+        likes++;
+        localStorage.setItem('portfolioLikes', likes.toString());
+        if (likeCount) {
+        likeCount.textContent = likes.toString();
+        heartIcon?.classList.add('scale-150', 'text-purple-400');
+        setTimeout(() => {
+            heartIcon?.classList.remove('scale-150');
+        }, 300);
+        }
+    });
+</script>

@@ -1,0 +1,100 @@
+---
+import { skills } from '@/data/skills';
+import SkillCard from '../shared/SkillCard.astro';
+---
+
+<section
+	id='about'
+	class='max-w-6xl min-h-screen px-6 md:px-10 lg:px-14 pt-28 lg:pt-32 mx-auto flex flex-col items-center'>
+	<!-- Título arriba y centrado -->
+	<div class='w-full flex flex-col items-start pb-10'>
+		<h2 class='text-white text-4xl md:text-6xl font-normal relative group'>
+			<span class='group-hover:text-purple-400 transition-colors duration-300'>About me</span>
+			<div
+				class='absolute -bottom-3 left-0 w-24 h-1 bg-gradient-to-r from-purple-500 to-purple-300
+                rounded-full transition-all duration-500 group-hover:w-32 group-hover:from-purple-600
+                group-hover:to-purple-400'>
+			</div>
+		</h2>
+	</div>
+
+	<!-- Contenido principal -->
+	<div class='flex flex-col lg:flex-row w-full h-full gap-12 justify-center items-center'>
+		<!-- Texto -->
+		<div class='w-full lg:w-1/2'>
+			<div class='text-white/60 text-base space-y-6 leading-relaxed'>
+				<p>
+					Hi, my name is <span class='relative text-gradient overflow-hidden'>Andreé Bermúdez</span>. I specialize
+					in building responsive, accessible, and high-performance applications. I'm passionate about creating
+					digital solutions that make a real impact and bring value to people.
+				</p>
+				<p>
+					My journey in development started out of pure curiosity — I just wanted to understand how websites
+					worked. Since then, I haven’t stopped learning. I enjoy writing clean, maintainable code and always stay
+					tuned to best practices and industry trends.
+				</p>
+				<p>
+					When I'm not coding, I usually explore new technologies, listen to music, or go for a walk to clear my
+					mind. I like to keep moving, both personally and professionally.
+				</p>
+
+				<!-- <p>
+					Hola, me llamo <span class='relative text-gradient overflow-hidden'>Andreé Bermúdez</span>, me
+					especializo en desarrollar aplicaciones que sean responsivas, accesibles y de óptimo rendimiento. Me
+					apasiona construir soluciones digitales que generen impacto real y valor para las personas.
+				</p>
+				<p>
+					Mi camino en el desarrollo comenzó por pura curiosidad, quería entender cómo funcionaban las páginas en
+					internet. Desde entonces, no he dejado de aprender. Disfruto escribir código limpio y mantenible, siempre
+					atento a las mejores prácticas y tendencias del sector.
+				</p>
+				<p>
+					Cuando no estoy programando, suelo explorar nuevas tecnologías, escuchar música o salir a caminar para
+					despejar la mente. Me gusta mantenerme en movimiento, tanto en lo personal como en lo profesional.
+				</p> -->
+			</div>
+		</div>
+		<!-- Skills -->
+		<div class='w-full lg:w-1/2 flex items-center justify-center'>
+			<div class='grid grid-cols-1 sm:grid-cols-2 gap-6 w-full'>
+				{
+					skills.map((skill, index) => (
+						<SkillCard
+							icon={skill.icon}
+							title={skill.title}
+							description={skill.description}
+							color={skill.color}
+							delay={index * 0.1}
+							isActive={skill.isActive}
+						/>
+					))
+				}
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	.text-gradient {
+		background: linear-gradient(
+			90deg,
+			rgba(161, 116, 250, 0.8) 0%,
+			rgba(255, 255, 255, 0.9) 50%,
+			rgba(161, 116, 250, 0.8) 100%
+		);
+		background-size: 200% auto;
+		color: transparent;
+		-webkit-background-clip: text;
+		background-clip: text;
+		animation: shine-text 8s linear infinite;
+	}
+
+	@keyframes shine-text {
+		0% {
+			background-position: 0% 0;
+		}
+		100% {
+			background-position: 200% 0;
+		}
+	}
+</style>

@@ -1,0 +1,169 @@
+<canvas id='matrix' width='600px' height='300px' class=''></canvas>
+<script>
+	const canvas = document.querySelector('canvas');
+	const ctx = canvas?.getContext('2d');
+	const fontSize = 16;
+	const colums = Math.floor(800 / fontSize);
+	const chars =
+		'アカサタナハマヤラワガザダバパイキシチニヒミリギジヂビピウクスツヌフムユルグズヅブプエケセテネヘメレゲゼデベペオコソトノホモヨロゴゾドボポヴッン0123456789';
+	// Inicializar el array
+	const drops = Array.from({ length: colums }, () => 0);
+	const colors = [
+		'#a174fa', // Original
+		'#8f5ff0', // Más oscuro
+		'#b389ff', // Más claro
+		'#9d6bf5', // Intermedio
+		'#c49eff', // Muy claro
+	];
+	// Configurar estilos
+	if (ctx) {
+		ctx.font = '16px montserrat';
+		ctx.fillStyle = '#a174fa';
+	}
+	// Funcion para obtener caracteres aleatorios
+	function randomChart() {
+		return chars[Math.floor(Math.random() * chars.length)];
+	}
+
+	function createNameMask(): CanvasRenderingContext2D | null {
+		const maskCanvas = document.createElement('canvas');
+		const maskCtx = maskCanvas.getContext('2d');
+		if (!maskCtx || !canvas) return null;
+		maskCanvas.width = canvas.width;
+		maskCanvas.height = canvas.height;
+		maskCtx.font = 'bold 140px Arial';
+		maskCtx.fillStyle = 'white';
+		maskCtx.textAlign = 'center';
+		maskCtx.fillText('Andree', 300, 200);
+		return maskCtx;
+	}
+
+	function isInName(x: number, y: number, maskCtx: CanvasRenderingContext2D | null) {
+		if (!maskCtx) return false;
+		const imageData = maskCtx.getImageData(x, y, 1, 1);
+		return imageData.data[3] > 0;
+	}
+
+	const maskCtx = createNameMask();
+
+	// Funcion para dibujar
+	function draw() {
+		if (!ctx || !canvas) return;
+		ctx.fillStyle = 'rgba(0,0,0,0.05)';
+		ctx.fillRect(0, 0, canvas?.width, canvas?.height);
+		// Cabmiar el color a las letras
+		ctx.fillStyle = '#a174fa';
+		for (let i = 0; i < drops.length; i++) {
+			const x = i * fontSize; // posicion en x
+			const y = drops[i] * fontSize; // posicion en y - cuando ha bajado
+			// Seleccionar color variado por columna
+			const colorIndex = i % colors.length;
+			// Detectar si estamos en la zona del nombre
+			if (maskCtx && isInName(x, y, maskCtx)) {
+				ctx.fillStyle = '#271c3c'; // Color oscuro para la sombra
+			} else {
+				ctx.fillStyle = colors[colorIndex]; // Color variado
+			}
+			// Dibujar una letra aleatoria (SIEMPRE cambia, incluso en las sombras)
+			ctx.fillText(randomChart(), x, y);
+			drops[i] += 0.5;
+			if (y > canvas.height) {
+				drops[i] = 0;
+			}
+		}
+	}
+
+	function animate() {
+		draw();
+		requestAnimationFrame(animate);
+	}
+	animate();
+</script>
+<!-- <canvas id='matrix' width='800px' height='300px' class='ml-60'></canvas>
+<script>
+	const canvas = document.querySelector('canvas');
+	const ctx = canvas?.getContext('2d');
+	const fontSize = 16;
+	const colums = Math.floor(800 / fontSize);
+	const chars =
+		'アカサタナハマヤラワガザダバパイキシチニヒミリギジヂビピウクスツヌフムユルグズヅブプエケセテネヘメレゲゼデベペオコソトノホモヨロゴゾドボポヴッン0123456789';
+	// Inicializar el array
+	const drops = Array.from({ length: colums }, () => 0);
+	const positions = [];
+	for (let x = 0; x < canvas.width; x += fontSize) {
+		for (let y = fontSize; y < canvas.height; y += fontSize) {
+			positions.push({ x, y });
+		}
+	}
+	const colors = [
+		'#a174fa', // Original
+		'#8f5ff0', // Más oscuro
+		'#b389ff', // Más claro
+		'#9d6bf5', // Intermedio
+		'#c49eff', // Muy claro
+	];
+	// Configurar estilos
+	if (ctx) {
+		ctx.font = '16px montserrat';
+		ctx.fillStyle = '#a174fa';
+	}
+	// Funcion para obtener caracteres aleatorios
+	function randomChart() {
+		return chars[Math.floor(Math.random() * chars.length)];
+	}
+
+	function createNameMask(): CanvasRenderingContext2D | null {
+		const maskCanvas = document.createElement('canvas');
+		const maskCtx = maskCanvas.getContext('2d');
+		if (!maskCtx || !canvas) return null;
+		maskCanvas.width = canvas.width;
+		maskCanvas.height = canvas.height;
+		maskCtx.font = 'bold 140px Arial';
+		maskCtx.fillStyle = 'white';
+		maskCtx.textAlign = 'center';
+		maskCtx.fillText('Andree', 400, 200);
+		return maskCtx;
+	}
+
+	function isInName(x: number, y: number, maskCtx: CanvasRenderingContext2D | null) {
+		if (!maskCtx) return false;
+		const imageData = maskCtx.getImageData(x, y, 1, 1);
+		return imageData.data[3] > 0;
+	}
+
+	const maskCtx = createNameMask();
+
+	// Funcion para dibujar
+	function draw() {
+    if (!ctx || !canvas) return;
+    
+    // Limpiar completamente (sin efecto trail)
+    ctx.fillStyle = 'rgba(0,0,0,1)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+    // Dibujar en cada posición fija
+    positions.forEach((pos, index) => {
+        const colorIndex = index % colors.length;
+        
+        if (maskCtx && isInName(pos.x, pos.y, maskCtx)) {
+            ctx.fillStyle = '#271c3c';
+        } else {
+            ctx.fillStyle = colors[colorIndex];
+        }
+        
+        ctx.fillText(randomChart(), pos.x, pos.y);
+    });
+}
+let lastTime = 0;
+const speed = 150; // milisegundos entre cambios (más alto = más lento)
+
+function animate(currentTime) {
+    if (currentTime - lastTime > speed) {
+        draw();
+        lastTime = currentTime;
+    }
+    requestAnimationFrame(animate);
+}
+
+animate(0); // Cambiar por animate(0) en lugar de animate()
+</script> -->

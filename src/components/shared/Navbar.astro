@@ -1,0 +1,32 @@
+---
+import MobileMenu from './MobileMenu.astro';
+---
+
+<nav
+	id='navbar'
+	class='fixed z-99 top-4 left-1/2 -translate-x-1/2 hidden lg:flex max-w-5xl w-full items-center backdrop-blur-lg justify-center border-1 border-transparent bg-dark/20 py-2 px-4 rounded-full duration-300 transition-colors'>
+	<ul class='flex items-center space-x-10 text-white font-normal'>
+		<li class='py-2 px-3'><a href='#hero'>Home</a></li>
+		<li class='py-2 px-3'><a href='#about'>About</a></li>
+		<li class='py-2 px-3'><a href='#projects'>Projects</a></li>
+		<li class='py-2 px-3'><a href='#experience'>Experience</a></li>
+		<li class='py-2 px-3'><a href='#achievements'>Achievements</a></li>
+		<li class='nav-border-item'>
+			<a href='#contact' class='nav-border-content text-white'>Contact</a>
+		</li>
+	</ul>
+</nav>
+<MobileMenu />
+
+<script>
+	const navbar = document.querySelector('#navbar');
+	window.addEventListener('scroll', () => {
+		if (window.scrollY > 100) {
+			navbar?.classList.remove('border-transparent');
+			navbar?.classList.add('border-gray-500/20');
+		} else {
+			navbar?.classList.remove('border-gray-500/20');
+			navbar?.classList.add('border-transparent');
+		}
+	});
+</script>

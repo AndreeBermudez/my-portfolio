@@ -1,0 +1,78 @@
+---
+import { Mail, Linkedin, Github, MapPin, Calendar } from '@lucide/astro';
+---
+
+<section class='max-w-6xl min-h-screen px-6 md:px-10 lg:px-14 pt-14 mx-auto pb-12 flex items-center' id='contact'>
+	<div class='flex flex-col-reverse md:flex-row w-full gap-12 items-center'>
+		<!-- Contenido izquierdo -->
+		<div class='flex-1 space-y-12'>
+			<div class='space-y-6'>
+				<h2 class='text-6xl font-normal text-white group-hover:text-purple-400 transition-colors duration-300'>
+					Let's Connect
+				</h2>
+				<p class='text-white/60 text-lg leading-relaxed'>
+					Got a project in mind? Want to collaborate? I'd love to hear from you!
+					<!-- ¿Tienes un proyecto en mente? ¿Quieres colaborar? ¡Me encantaría escucharte! -->
+				</p>
+			</div>
+
+			<!-- Info y Links -->
+			<div class='space-y-8'>
+				<div class='space-y-4'>
+					<div class='flex items-center gap-2 text-white/60'>
+						<MapPin size={20} class='text-purple-400' />
+						<span>Chimbote, Perú</span>
+					</div>
+					<div class='flex items-center gap-2 text-white/60'>
+						<Calendar size={20} class='text-purple-400' />
+						<span>Available for projects</span>
+						<!-- <span>Disponible para proyectos</span> -->
+					</div>
+				</div>
+
+				<!-- Links con hover effects -->
+				<div class='flex flex-wrap gap-4'>
+					<a
+						href='https://mail.google.com/mail/?view=cm&fs=1&to=andreebermudez1408@gmail.com'
+						target='_blank'
+						class='flex items-center gap-2 px-6 py-3 rounded-xl bg-[#141414]/50 border border-white/5
+                        hover:border-purple-500/30 hover:shadow-[0_0_30px_rgba(161,116,250,0.15)]
+                        transition-all duration-300 text-white/70 hover:text-purple-400 hover:-translate-y-1'>
+						<Mail size={20} />
+						<span>Email Me</span>
+					</a>
+					<a
+						href='https://www.linkedin.com/in/andree-berm%C3%BAdez-porras-1b0954328/'
+						target='_blank'
+						class='flex items-center gap-2 px-6 py-3 rounded-xl bg-[#141414]/50 border border-white/5
+                        hover:border-purple-500/30 hover:shadow-[0_0_30px_rgba(161,116,250,0.15)]
+                        transition-all duration-300 text-white/70 hover:text-purple-400 hover:-translate-y-1'>
+						<Linkedin size={20} />
+						<span>LinkedIn</span>
+					</a>
+					<a
+						href='https://github.com/AndreeBermudez/'
+						target='_blank'
+						class='flex items-center gap-2 px-6 py-3 rounded-xl bg-[#141414]/50 border border-white/5
+                        hover:border-purple-500/30 hover:shadow-[0_0_30px_rgba(161,116,250,0.15)]
+                        transition-all duration-300 text-white/70 hover:text-purple-400 hover:-translate-y-1'>
+						<Github size={20} />
+						<span>GitHub</span>
+					</a>
+				</div>
+			</div>
+		</div>
+
+		<!-- Imagen derecha -->
+		<div class='flex-1 relative group hidden md:block'>
+			<img
+				src='/src/assets/portada.png'
+				alt='Andree Bermudez'
+				class='w-auto max-h-[500px] mx-auto rounded-2xl border border-white/5
+                transition-all duration-500 group-hover:border-purple-500/30
+                group-hover:shadow-[0_0_20px_rgba(161,116,250,0.15)]'
+			/>
+			<div class='absolute inset-0 bg-gradient-to-t from-dark via-transparent to-transparent rounded-2xl'></div>
+		</div>
+	</div>
+</section>

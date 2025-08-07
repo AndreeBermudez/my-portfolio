@@ -1,0 +1,48 @@
+@import 'tailwindcss';
+
+@theme {
+	--default-font-family: 'Montserrat', sans-serif;
+    --color-dark: #101010;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+@keyframes border-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.nav-border-item {
+    position: relative;
+    border-radius: 1.5rem;
+    overflow: hidden;
+    background: black;
+    padding: 2px;
+}
+
+.nav-border-item::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(
+        rgba(244, 114, 182, 0.8) 0deg,
+        rgba(192, 132, 252, 0.8) 90deg,
+        transparent 180deg
+    );
+    animation: border-spin 2s linear infinite;
+}
+
+.nav-border-content {
+    position: relative;
+    background: black;
+    border-radius: 1.25rem;
+    padding: 0.5rem 0.75rem;
+    display: block;
+}
+
+
