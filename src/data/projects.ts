@@ -3,7 +3,7 @@ const projects = [
 		title: 'Municipal Content Management System',
 		description:
 			'Web portal for the municipality with a role-based admin panel. Enables efficient content management with a modern and accessible interface for citizens.',
-		image: '/src/assets/municipalidad.png',
+		image: 'src/assets/municipalidad.png',
 		technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Spring Boot', 'Git & GitHub'],
 		github: '#',
 		live: '#',
@@ -12,7 +12,7 @@ const projects = [
 	{
 		title: 'Business License Management System',
 		description: 'Administrative platform for issuing and managing commercial business licenses.',
-		image: '/src/assets/licencias.png',
+		image: 'src/assets/licencias.png',
 		technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Spring Boot', 'Git & GitHub'],
 		github: '#',
 		live: '#',
@@ -22,7 +22,7 @@ const projects = [
 		title: 'CoffeeShop Blog',
 		description:
 			'Minimalist blog built with Astro and WordPress Headless. Features posts, categories, and a comment system with responsive design.',
-		image: '/src/assets/blog.png',
+		image: 'src/assets/blog.png',
 		technologies: ['Astro', 'WordPress Headless', 'PHP', 'TypeScript', 'Zod'],
 		github: '#',
 		live: '#',
@@ -31,7 +31,7 @@ const projects = [
 	{
 		title: 'Pio Riko Restaurant System',
 		description: 'Management system for a restaurant with modules for waiters, cooks, and cashiers.',
-		image: '/src/assets/pioriko.png',
+		image: 'src/assets/pioriko.png',
 		technologies: ['React', 'JavaScript', 'Tailwind CSS', 'Spring Boot', 'Git & GitHub'],
 		github: '#',
 		live: '#',
@@ -41,7 +41,7 @@ const projects = [
 		title: 'Vía Costa Management System',
 		description:
 			'Desktop application for a transportation company. Includes ticket sales, administrative control, and identity validation via the RENIEC API.',
-		image: '/src/assets/viacosta.png',
+		image: 'src/assets/viacosta.png',
 		technologies: ['Spring Boot', 'JavaFX', 'RENIEC API', 'SceneBuilder'],
 		github: '#',
 		live: '#',
@@ -51,7 +51,7 @@ const projects = [
 		title: 'Hackathon Project',
 		description:
 			'Solution developed during a national hackathon by Expedition. Winner of first place in the innovation category.',
-		image: '/src/assets/hackaton.png',
+		image: 'src/assets/hackaton.png',
 		technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Spring Boot', 'Git & GitHub'],
 		github: '#',
 		live: '#',
