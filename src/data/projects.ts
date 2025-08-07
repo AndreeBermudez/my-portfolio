@@ -1,9 +1,9 @@
-import Blog from '@assets/blog.png';
-import Licencias from '@assets/licencias.png';
-import Municipalidad from '@assets/municipalidad.png';
-import Polleria from '@assets/pioriko.png';
-import Bus from '@assets/viacosta.png';
-import Hackaton from '@assets/hackaton.png';
+import Blog from '../assets/blog.png';
+import Licencias from '../assets/licencias.png';
+import Municipalidad from '../assets/municipalidad.png';
+import Polleria from '../assets/pioriko.png';
+import Bus from '../assets/viacosta.png';
+import Hackaton from '../@assets/hackaton.png';
 
 const projects = [
 	{
